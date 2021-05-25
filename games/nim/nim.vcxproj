@@ -139,7 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Gamemode.cpp" />
+    <ClCompile Include="Matches.cpp" />
     <ClCompile Include="nim.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Gamemode.h" />
+    <ClInclude Include="Matches.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
