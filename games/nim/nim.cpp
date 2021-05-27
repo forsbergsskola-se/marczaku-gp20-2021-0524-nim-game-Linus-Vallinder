@@ -88,7 +88,26 @@ int main()
 
 			if(!gamemode.isPvp)
 			{
-				cout << "Have yet to implement this!" << endl;
+				cout << "AI's Turn:" << endl;
+				DisplayCurrentState(matches, gamemode);
+
+				gamemode.amount = rand() % 3;
+
+				if (gamemode.amount > 0 && gamemode.amount < 4)
+				{
+					matches.Remove(gamemode.amount);
+
+					if (matches.GetAmount() <= 0)
+					{
+						gamemode.isGameOver = true;
+					}
+
+					gamemode.isPlayerOnesTurn = true;
+				}
+
+				if (gamemode.amount < 0 || gamemode.amount > 3) {
+					cout << "The input is invalid" << endl;
+				}
 			}
 		}
 	}
