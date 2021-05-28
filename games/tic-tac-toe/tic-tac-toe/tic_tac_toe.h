@@ -6,7 +6,7 @@ class tic_tac_toe
 		int getPlayerInput(char currentPlayer);
 		void displayBoard(char[9], char);
 		void displayBoard();
-		bool checkForWin();
+		bool checkForWin(char[9], char);
 };
 
 int main();

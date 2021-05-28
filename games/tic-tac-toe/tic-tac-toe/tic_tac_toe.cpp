@@ -5,6 +5,7 @@ using namespace std;
 
 int start()
 {
+	srand(time(NULL));
 	cout << "Enter the amount of human players.\n Enter [1] to play against AI\n Enter [2] to play multiplayer" << endl;
 	int amount{};
 
@@ -79,10 +80,36 @@ void displayBoard(char* board, char currentPlayer)
 	cout << "     |     |     " << endl << endl;
 }
 
-bool tic_tac_toe::checkForWin()
+bool checkForWin(char* board, char CurrentPlayer)
 {
-	return false;
-} 
+	if (board[0] == CurrentPlayer && board[1] == CurrentPlayer && board[2] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[3] == CurrentPlayer && board[4] == CurrentPlayer && board[5] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[6] == CurrentPlayer && board[7] == CurrentPlayer && board[8] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[0] == CurrentPlayer && board[4] == CurrentPlayer && board[8] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[2] == CurrentPlayer && board[4] == CurrentPlayer && board[6] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[0] == CurrentPlayer && board[3] == CurrentPlayer && board[6] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[1] == CurrentPlayer && board[4] == CurrentPlayer && board[7] == CurrentPlayer) {
+		return true;
+	}
+	else if (board[2] == CurrentPlayer && board[5] == CurrentPlayer && board[8] == CurrentPlayer) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
 
 int main()
 {
@@ -94,9 +121,55 @@ int main()
 	char playerTwo = 'O';
 	char currentPlayer = playerOne;
 
-	while (true)
+	bool gameover = false;
+
+	while (!gameover)
 	{
 		if (playerAmount == 1 && currentPlayer == playerOne)
+		{
+			displayBoard(board, currentPlayer);
+			int box = getPlayerInput(currentPlayer);
+
+			if (board[box - 1] == ' ')
+			{
+				board[box - 1] = 'X';
+			}
+			else
+			{
+				cout << "Please try again." << endl;
+				displayBoard(board, currentPlayer);
+				int box = getPlayerInput(currentPlayer);
+			}
+
+			if (checkForWin(board, currentPlayer))
+			{
+				cout << "Player one wins." << endl;
+				break;
+			}
+			currentPlayer = playerTwo;
+		}
+		else if (playerAmount == 1 && currentPlayer == playerTwo)
+		{
+			displayBoard(board, currentPlayer);
+			int box = rand() % 9;
+			if (board[box - 1] == ' ')
+			{
+				board[box - 1] = 'O';
+			}
+			else
+			{
+				int box = rand() % 9;
+			}
+
+			if (checkForWin(board, currentPlayer))
+			{
+				cout << "AI wins." << endl;
+				break;
+			}
+			currentPlayer = playerOne;
+		}
+
+		if (playerAmount == 2 && currentPlayer == playerOne)
 		{
 			displayBoard(board, currentPlayer);
 			int box = getPlayerInput(currentPlayer);
@@ -112,20 +185,36 @@ int main()
 				displayBoard(board, currentPlayer);
 				int box = getPlayerInput(currentPlayer);
 			}
+
+			if (checkForWin(board, currentPlayer))
+			{
+				cout << "Player one wins." << endl;
+				break;
+			}
+			currentPlayer = playerTwo;
 		}
-		else if (playerAmount == 1 && currentPlayer == playerTwo)
+		else if (playerAmount == 2 && currentPlayer == playerTwo)
 		{
 			displayBoard(board, currentPlayer);
-			int box = rand() % 9;
+			int box = getPlayerInput(currentPlayer);
+
 			if (board[box - 1] == ' ')
 			{
 				board[box - 1] = 'O';
-				currentPlayer = playerOne;
 			}
 			else
 			{
-				int box = rand() % 9;
+				cout << "Please try again." << endl;
+				displayBoard(board, currentPlayer);
+				int box = getPlayerInput(currentPlayer);
 			}
+
+			if (checkForWin(board, currentPlayer))
+			{
+				cout << "Player two wins." << endl;
+				break;
+			}
+			currentPlayer = playerOne;
 		}
 	}
 }
