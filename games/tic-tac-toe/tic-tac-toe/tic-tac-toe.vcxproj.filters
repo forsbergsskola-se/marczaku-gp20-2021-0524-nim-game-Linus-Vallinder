@@ -15,7 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="tic-tac-toe.cpp">
+    <ClInclude Include="tic_tac_toe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tic_tac_toe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
